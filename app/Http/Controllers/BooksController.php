@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Transformer\BookTransformer;
+use League\Fractal\Resource\Collection;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -11,7 +13,7 @@ class BooksController extends Controller
 {
     public function index()
     {
-        return $this->collection(Book::all(), new BookTransformer());
+        return $this->collection(Book::paginate(4), new BookTransformer());
     }
 
     public function show($id) {

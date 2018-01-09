@@ -3,6 +3,7 @@
 namespace App\Http\Response;
 
 use League\Fractal\Manager;
+use League\Fractal\Pagination\IlluminatePaginatorAdapter;
 use League\Fractal\Resource\Item;
 use League\Fractal\TransformerAbstract;
 use League\Fractal\Resource\ResourceInterface;
@@ -65,6 +66,8 @@ class FractalResponse {
     public function collection($data, TransformerAbstract $transformer, $resourceKey = null)
     {
         $resource = new Collection($data, $transformer, $resourceKey);
+
+        $resource->setPaginator(new IlluminatePaginatorAdapter($data));
 
         return $this->manager->createData($resource)->toArray();
     }
