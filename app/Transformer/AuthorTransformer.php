@@ -25,9 +25,8 @@ class AuthorTransformer extends TransformerAbstract
             'name' => $author->name,
             'gender' => $author->gender,
             'biography' => $author->biography,
-            'created' => $author->created_at,
-            'updated' => $author->updated_at,
-            'books' => $author->books()
+            /*'created' => $author->created_at,
+            'updated' => $author->updated_at*/
         ];
     }
 }

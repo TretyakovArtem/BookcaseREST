@@ -25,9 +25,9 @@ class BookTransformer extends TransformerAbstract {
             'title'       => $book->title,
             'description' => $book->description,
             'author'      => $book->author,
-            'created'     => $book->created_at->toIso8601String(),
-            'updated'     => $book->updated_at->toIso8601String(),
-            'released'    => $book->created_at->diffForHumans()
+            /*'created'     => $book->created_at->toIso8601String(),*/
+           /* 'updated'     => $book->updated_at->toIso8601String(),
+            'released'    => $book->created_at->diffForHumans()*/
         ];
     }
 
