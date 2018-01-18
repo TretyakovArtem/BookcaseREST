@@ -9,4 +9,10 @@ use Illuminate\Database\Eloquent\Model;
     protected $table = 'books';
 
     protected $fillable = ['title', 'description', 'author'];
+
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
  }

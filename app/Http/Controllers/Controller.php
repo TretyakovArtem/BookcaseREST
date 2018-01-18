@@ -24,6 +24,7 @@ class Controller extends BaseController
     public function __construct(FractalResponse $fractal)
     {
         $this->fractal = $fractal;
+        $this->fractal->parseIncludes();
     }
 
 

@@ -9,6 +9,7 @@ use League\Fractal\TransformerAbstract;
 use League\Fractal\Resource\ResourceInterface;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Serializer\SerializerAbstract;
+use Illuminate\Http\Request;
 
 /**
  * Class FractalResponse
@@ -35,12 +36,46 @@ class FractalResponse {
      * @param \League\Fractal\Manager                       $manager
      * @param \League\Fractal\Serializer\SerializerAbstract $serializer
      */
-    public function __construct(Manager $manager, SerializerAbstract $serializer)
+    /*public function __construct(Manager $manager, SerializerAbstract $serializer)
     {
         $this->manager = $manager;
         $this->serializer = $serializer;
         $this->manager->setSerializer($serializer);
+    }*/
+
+
+    /**
+     * @var Request
+     */
+    private $request;
+
+    public function __construct(
+        Manager $manager,
+        SerializerAbstract $serializer,
+        Request $request
+    )
+    {
+        $this->manager = $manager;
+        $this->serializer = $serializer;
+        $this->manager->setSerializer($serializer);
+        $this->request = $request;
     }
+
+
+    /**
+     * Get the includes from the request if none are passed.
+     *
+     * @param null $includes
+     */
+    public function parseIncludes($includes = null)
+    {
+        if (empty($includes)) {
+            $includes = $this->request->query('include', '');
+        }
+
+        $this->manager->parseIncludes($includes);
+    }
+
 
     /**
      * @param                                     $data
