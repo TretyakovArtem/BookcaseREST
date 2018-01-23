@@ -28,6 +28,11 @@ $router->put('/books/{id:[\d]+}', 'BooksController@update');
 $router->delete('/books/{id:[\d]+}', 'BooksController@destroy');
 
 
+
+$router->get('/di', 'DI@createForm');
+
+
+
 $router->group(['prefix' => 'authors'], function () use ($router) {
     $router->get('/', 'AuthorsController@index');
     $router->post('/', 'AuthorsController@store');
